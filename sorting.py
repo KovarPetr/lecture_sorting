@@ -24,26 +24,39 @@ def read_data(file_name):
         return data
 
 
-def selection_sort(list_to_sort):
+def selection_sort(list_to_sort, direction="up"):
     iteration = 0
     position = 0
-    for number in list_to_sort:
-        min = list_to_sort[iteration]
-        for comparable in list_to_sort[iteration:]:
-            if min > comparable:
-                min = comparable
-                position_min = position
-            position = position + 1
-        list_to_sort[iteration], list_to_sort[position_min] = list_to_sort[position_min], list_to_sort[iteration]
-        iteration = iteration + 1
-        position_min = iteration
-        position = iteration
+    if direction == "up":
+        for number in list_to_sort:
+            min = list_to_sort[iteration]
+            for comparable in list_to_sort[iteration:]:
+                if min > comparable:
+                    min = comparable
+                    position_min = position
+                position = position + 1
+            list_to_sort[iteration], list_to_sort[position_min] = list_to_sort[position_min], list_to_sort[iteration]
+            iteration = iteration + 1
+            position_min = iteration
+            position = iteration
+    if direction == "down" :
+        for number in list_to_sort:
+            max = list_to_sort[iteration]
+            for comparable in list_to_sort[iteration:]:
+                if max < comparable:
+                    max = comparable
+                    position_max = position
+                position = position + 1
+            list_to_sort[iteration], list_to_sort[position_max] = list_to_sort[position_max], list_to_sort[iteration]
+            iteration = iteration + 1
+            position_max = iteration
+            position = iteration
     return list_to_sort
 
 
 def main():
     data = read_data("numbers.csv")
-    print(selection_sort(data["series_1"]))
+    print(selection_sort(data["series_1"], "down"))
     pass
 
 

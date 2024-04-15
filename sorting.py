@@ -54,9 +54,24 @@ def selection_sort(list_to_sort, direction="up"):
     return list_to_sort
 
 
+def bubble_sort(list_to_sort):
+    iteration = len(list_to_sort) + 1
+    for number in list_to_sort[:iteration - 1]:
+        counter = 1
+        for comparable in list_to_sort:
+            if comparable > list_to_sort[counter]:
+                list_to_sort[counter], list_to_sort[counter - 1] = list_to_sort[counter - 1], list_to_sort[counter]
+            else:
+                comparable = list_to_sort[counter]
+            if counter < len(list_to_sort) - 1:
+                counter = counter + 1
+        iteration = iteration + 1
+    return list_to_sort
+
+
 def main():
     data = read_data("numbers.csv")
-    print(selection_sort(data["series_1"], "down"))
+    print(bubble_sort(data["series_1"]))
     pass
 
 
